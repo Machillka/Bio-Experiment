@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mechanical Pipette
+* source:	https://sketchfab.com/3d-models/mechanical-pipette-00517d6337174d47a8cc8289de46b5a9
+* author:	3DLab (https://sketchfab.com/3DLaba)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mechanical Pipette" (https://sketchfab.com/3d-models/mechanical-pipette-00517d6337174d47a8cc8289de46b5a9) by 3DLab (https://sketchfab.com/3DLaba) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

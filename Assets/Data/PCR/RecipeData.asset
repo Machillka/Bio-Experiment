@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25557c3a58079b545a3a3f6509ea9943, type: 3}
+  m_Name: RecipeData
+  m_EditorClassIdentifier: 
+  ingredients:
+  - reagent: {fileID: 11400000, guid: 1aa74131addd7554a9b98c725ff2f072, type: 2}
+    targetVolume: 5
+    tolerance: 0.1
+  - reagent: {fileID: 11400000, guid: 21a26611fff045044afba893344df8c4, type: 2}
+    targetVolume: 1
+    tolerance: 0.1
+  - reagent: {fileID: 11400000, guid: e616f1344391ab343beff564d7a56530, type: 2}
+    targetVolume: 2.5
+    tolerance: 0.1
+  - reagent: {fileID: 11400000, guid: baed89e7ce98aef43ab8f066e0ddebaf, type: 2}
+    targetVolume: 2.5
+    tolerance: 0.1
+  - reagent: {fileID: 11400000, guid: edf12a62e1721954ea7b62c8599322b1, type: 2}
+    targetVolume: 30
+    tolerance: 0.1
+  - reagent: {fileID: 11400000, guid: 1839de541361a884c9e2fc1f13771834, type: 2}
+    targetVolume: 1
+    tolerance: 0.1
+  - reagent: {fileID: 11400000, guid: c8b1d60d6ba87d9488a6566933ad20fd, type: 2}
+    targetVolume: 8
+    tolerance: 0.1
+  totalTargetVolume: 50
+  totalTolerance: 0.1

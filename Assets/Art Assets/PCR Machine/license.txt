@@ -1,0 +1,11 @@
+Model Information:
+* title:	PCR machine
+* source:	https://sketchfab.com/3d-models/pcr-machine-a76bd38f0af1422d96add0d9606e5fee
+* author:	orphic_oasis8 (https://sketchfab.com/orphic_oasis8)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PCR machine" (https://sketchfab.com/3d-models/pcr-machine-a76bd38f0af1422d96add0d9606e5fee) by orphic_oasis8 (https://sketchfab.com/orphic_oasis8) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

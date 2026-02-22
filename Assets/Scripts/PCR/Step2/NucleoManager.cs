@@ -1,28 +1,36 @@
 using System.Collections.Generic;
 using System.Linq;
+using PCR;
 using UnityEngine;
 
-public class NucleoManager : MonoBehaviour
+public class NucleoManager : StepBase
 {
     public static NucleoManager Instance { get; private set; }
 
-    public string targetSequence = "";          // 目标序列,使用inspector编辑
+    private string targetSequence = "";          // 目标序列, 通过黑板传递
     public List<Slot> targetSlots = new();
     public Transform topLayerParent;    // TopLayer 父物体
     public Transform bottomLayerParent; // BottomLayer 父物体
+    public GameObject step2GO;
+
     private void Awake()
     {
         Instance = this;
         AutoFindAndSortSlots();
         AutoLinkSlots();
+        step2GO.SetActive(false);
     }
 
+    /// <summary>
+    /// 在每一次操作的时候 Check 然后弹出对应的 hint
+    /// </summary>
     public void CheckSequence()
     {
         if (string.IsNullOrEmpty(targetSequence) || targetSlots.Count == 0) return;
 
         string currentSequence = "";
 
+        // TODO: 做一个 Hint UI
         foreach (var slot in targetSlots)
         {
             if (slot.IsEmpty)
@@ -37,7 +45,7 @@ public class NucleoManager : MonoBehaviour
 
         if (currentSequence == targetSequence)
         {
-            OnStepComplete();
+            OnExit();
         }
         else
         {
@@ -45,12 +53,28 @@ public class NucleoManager : MonoBehaviour
         }
     }
 
-    private void OnStepComplete()
+    public override void OnExit()
     {
         Debug.Log("<color=green>PCR 引物设计成功！进入下一阶段...</color>");
-        // TODO: 下一个步骤
+        // TODO: 处理引物序列信息
+        PCRManager.Instance.NextStep();
     }
 
+    public override void OnEnter()
+    {
+        Debug.Log("Step2 引物设计 enter");
+
+        step2GO.SetActive(true);
+
+        if (!string.IsNullOrEmpty(Data.TargetDnaSequence))
+        {
+            // FIXME: 实际上 target sequence 需要截取部分进行显示; 而且引物也不是直接这样得到的
+            // FIXME: 缺失 显示 DNA 序列逻辑, 缺失截取逻辑
+            targetSequence = Data.TargetDnaSequence;
+        }
+    }
+
+    #region Slot Operation
     [ContextMenu("AutoFind And Sort Slots")]
     private void AutoFindAndSortSlots()
     {
@@ -87,6 +111,7 @@ public class NucleoManager : MonoBehaviour
             bottomSlots[i].name = $"Slot_Bottom_{i}";
         }
 
-        Debug.Log($"成功自动双向绑定了 {count} 对 Slot！");
+        Debug.Log($"成功自动双向绑定了 {count} 对 Slot");
     }
+    #endregion
 }

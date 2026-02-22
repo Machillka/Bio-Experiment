@@ -48,8 +48,8 @@ public class Slot : MonoBehaviour
         // 初始化 View
         var view = obj.GetComponent<NucleoView>();
         view.Setup(data);
-        view.SetRaycastState(false);        // 不阻挡射线,可以覆盖    
-        // view.SetDraggingState(false); // 确保实心，阻挡射线
+        view.SetRaycastState(false);             // 不阻挡射线,可以覆盖
+        // view.SetDraggingState(false);         // 确保实心，阻挡射线
     }
 
     private IEnumerator SmoothSnap(Transform target, Vector3 localDest, float duration)
