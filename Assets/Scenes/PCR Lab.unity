@@ -33119,7 +33119,7 @@ MonoBehaviour:
   tempText: {fileID: 99823873}
   cycleText: {fileID: 380654198}
   timerText: {fileID: 2075894699}
-  progressSlider: {fileID: 0}
+  progressSlider: {fileID: 1801238606}
   startButton: {fileID: 1928873637}
   userProtocol:
     protocolName: Standard PCR
