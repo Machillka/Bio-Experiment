@@ -1,7 +1,6 @@
-using System;
-using PCR;
 using PCR.Helper;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PCR
 {
@@ -17,11 +16,33 @@ namespace PCR
         public KeyCode ActionKey = KeyCode.Space;
         public KeyCode EjectKey = KeyCode.T;
 
+        public Button actionButton;
+        public Button ejectButton;
+
         private void Awake()
         {
             _model = GetComponent<PipetteModel>();
             _movement = GetComponent<PipetteDragger>();
         }
+
+        // 绑定 button 事件适配手机
+        private void OnEnable()
+        {
+            if (actionButton)
+                actionButton.onClick.AddListener(HandleAction);
+            if (ejectButton)
+                ejectButton.onClick.AddListener(HandleEjection);
+        }
+
+        private void OnDisable()
+        {
+
+            if (actionButton)
+                actionButton.onClick.RemoveListener(HandleAction);
+            if (ejectButton)
+                ejectButton.onClick.RemoveListener(HandleEjection);
+        }
+
 
         private void Update()
         {
