@@ -11,7 +11,10 @@ namespace PCR
 
     // TODO: 实现成 SO 文件用于配置与修改
     [System.Serializable]
-    public class PCRProtocol
+
+
+    [CreateAssetMenu(fileName = "ReagentData", menuName = "PCR/PCR Maching Protocol")]
+    public class PCRProtocol : ScriptableObject
     {
         public string protocolName = "Standard PCR";
 

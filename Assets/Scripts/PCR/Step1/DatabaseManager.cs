@@ -33,16 +33,19 @@ namespace PCR.Step1
             }
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            SetCurrentSceneActive(false);
         }
 
         public override void OnEnter()
         {
+
             OnExit();
         }
 
         public override void OnExit()
         {
             Data.TargetDnaSequence = "ATCGATCGATCG";
+            SetCurrentSceneActive(false);
             PCRManager.Instance.NextStep();
         }
 

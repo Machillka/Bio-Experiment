@@ -38,6 +38,7 @@ public class LiquidContainer : MonoBehaviour
     [Header("UI Integration")]
     public GameObject labelPrefab;
     public Vector3 labelOffset = new Vector3(0, 0.2f, 0);
+    // public Vector3 labelOffset = Vector3.up * 0.2f;
     public string DisplayName;
 
     private GameObject _currentLabelInstance;

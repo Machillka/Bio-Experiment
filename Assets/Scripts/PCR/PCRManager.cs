@@ -52,7 +52,7 @@ namespace PCR
         {
             Data.Clear();
 
-            // 3. 进入第一步
+            // 进入第一步
             if (allSteps.Count > 0)
             {
                 _currentStepIndex = 0;
@@ -90,6 +90,12 @@ namespace PCR
             {
                 Debug.Log($"PCR Flow: Entering Step {idx} - {step.name}");
                 step.OnEnter();                // 触发 Step 的 OnEnter
+            }
+            else
+            {
+                // 继续查找到下一个非空对象
+                Debug.LogWarning($"Current id = {idx}, step is null!!");
+                NextStep();
             }
         }
     }

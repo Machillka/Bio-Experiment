@@ -18,7 +18,7 @@ MonoBehaviour:
     tolerance: 0.1
   - reagent: {fileID: 11400000, guid: 21a26611fff045044afba893344df8c4, type: 2}
     targetVolume: 1
-    tolerance: 0.1
+    tolerance: 2
   - reagent: {fileID: 11400000, guid: e616f1344391ab343beff564d7a56530, type: 2}
     targetVolume: 2.5
     tolerance: 0.1
@@ -33,6 +33,6 @@ MonoBehaviour:
     tolerance: 0.1
   - reagent: {fileID: 11400000, guid: c8b1d60d6ba87d9488a6566933ad20fd, type: 2}
     targetVolume: 8
-    tolerance: 0.1
+    tolerance: 2.5
   totalTargetVolume: 50
-  totalTolerance: 0.1
+  totalTolerance: 20

@@ -1,9 +1,10 @@
+using PCR.Core;
 using UnityEngine;
 
 namespace Bio.Interaction
 {
-
     [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(EquipmentData))]
     public class Dragable : MonoBehaviour
     {
         [Header("Drag Settings")]
@@ -71,8 +72,7 @@ namespace Bio.Interaction
 
             foreach (var h in hits)
             {
-                var dz = h.GetComponent<DropZone>();
-                if (dz == null) continue;
+                if (!h.TryGetComponent<DropZone>(out var dz)) continue;
 
                 float d = Vector3.Distance(transform.position, dz.transform.position);
                 if (d < bestDist)
@@ -84,6 +84,7 @@ namespace Bio.Interaction
 
             // 通知 DropZone 悬停（用于高亮或 UI 提示）
             DropZone.SetCurrentHover(bestZone);
+
         }
 
         void OnMouseUp()
@@ -110,8 +111,7 @@ namespace Bio.Interaction
 
             foreach (var h in hits)
             {
-                var dz = h.GetComponent<DropZone>();
-                if (dz == null) continue;
+                if (!h.TryGetComponent<DropZone>(out var dz)) continue;
 
                 float d = Vector3.Distance(transform.position, dz.transform.position);
                 if (d < bestDist)
@@ -121,9 +121,14 @@ namespace Bio.Interaction
                 }
             }
 
+
+            // 成功放置到了地方
             if (bestZone != null)
             {
+                // 广播高亮处理等
                 bestZone.OnObjectDropped(gameObject);
+                // 广播已经成功被 drop
+                PCREventBus.PublishDragableDrop(GetComponent<EquipmentData>());
             }
             else
             {

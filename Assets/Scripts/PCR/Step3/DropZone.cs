@@ -77,7 +77,8 @@ namespace Bio.Interaction
             // 类型匹配 → 吸附位置
             if (snapToZone)
             {
-                obj.transform.position = transform.position + snapOffset;
+                // obj.transform.position = transform.position + snapOffset;
+                obj.SetActive(false);
             }
 
             // 短暂高亮绿色
@@ -92,6 +93,4 @@ namespace Bio.Interaction
                 currentHover = null;
         }
     }
-
-
 }

@@ -11,14 +11,14 @@ public class NucleoManager : StepBase
     public List<Slot> targetSlots = new();
     public Transform topLayerParent;    // TopLayer 父物体
     public Transform bottomLayerParent; // BottomLayer 父物体
-    public GameObject step2GO;
+    private bool _isComplete = false;
 
     private void Awake()
     {
+        SetCurrentSceneActive(false);
         Instance = this;
         AutoFindAndSortSlots();
         AutoLinkSlots();
-        step2GO.SetActive(false);
     }
 
     /// <summary>
@@ -27,6 +27,10 @@ public class NucleoManager : StepBase
     public void CheckSequence()
     {
         if (string.IsNullOrEmpty(targetSequence) || targetSlots.Count == 0) return;
+
+        // 防止双判
+        if (_isComplete)
+            return;
 
         string currentSequence = "";
 
@@ -45,6 +49,7 @@ public class NucleoManager : StepBase
 
         if (currentSequence == targetSequence)
         {
+            _isComplete = true;
             OnExit();
         }
         else
@@ -53,9 +58,11 @@ public class NucleoManager : StepBase
         }
     }
 
+    [ContextMenu("Step 2 Complete")]
     public override void OnExit()
     {
         Debug.Log("<color=green>PCR 引物设计成功！进入下一阶段...</color>");
+        SetCurrentSceneActive(false);
         // TODO: 处理引物序列信息
         PCRManager.Instance.NextStep();
     }
@@ -63,8 +70,7 @@ public class NucleoManager : StepBase
     public override void OnEnter()
     {
         Debug.Log("Step2 引物设计 enter");
-
-        step2GO.SetActive(true);
+        SetCurrentSceneActive(true);
 
         if (!string.IsNullOrEmpty(Data.TargetDnaSequence))
         {

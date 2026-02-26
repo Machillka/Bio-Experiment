@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace PCR
 {
-    public class PCRMachine : MonoBehaviour
+    public class PCRMachine : StepBase
     {
         [Header("Configuration")]
         public float heatRate = 4.0f; // 升温速度 (度/秒)
@@ -38,10 +38,14 @@ namespace PCR
         private float _experimentStartTime;
         private float _estimatedTotalDuration;
 
-        private void Start()
+        private void Awake()
         {
-            UpdateScreenDisplay("Ready", 0, 0);
-            startButton.onClick.AddListener(StartPCR);
+            // 使得可以进入下一步
+            _loadedTube = new()
+            {
+                DisplayName = "Temp"
+            };
+            SetCurrentSceneActive(false);
         }
 
         private void Update()
@@ -175,7 +179,7 @@ namespace PCR
         // TODO: 通知全局单例进行下一个步骤
         private void CalculateResult()
         {
-            if (_loadedTube == null) return;
+            // if (_loadedTube == null) return;
 
             // 检查用户的复性温度设置是否在引物Tm值的允许范围内
             float tempDiff = Mathf.Abs(userProtocol.annealing.temperature - targetAnnealingTemp);
@@ -183,9 +187,25 @@ namespace PCR
             bool success = tempDiff <= allowableError;
 
             // 将结果写入试管
-            _loadedTube.ReceivePCRResult(success);
+            // _loadedTube.ReceivePCRResult(success);
 
             Debug.Log(success ? "<color=green>PCR Success!</color>" : "<color=red>PCR Failed: Wrong Temp</color>");
+
+            if (success)
+                OnExit();
+        }
+
+        public override void OnEnter()
+        {
+            SetCurrentSceneActive(true);
+            UpdateScreenDisplay("Ready", 0, 0);
+            startButton.onClick.AddListener(StartPCR);
+        }
+
+        public override void OnExit()
+        {
+            SetCurrentSceneActive(false);
+            PCRManager.Instance.NextStep();
         }
 
         // TODO: 做学生输入温度和其他设置 —— 修改数据

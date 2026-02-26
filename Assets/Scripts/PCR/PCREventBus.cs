@@ -1,4 +1,5 @@
 using System;
+using Bio.Interaction;
 using UnityEngine;
 namespace PCR.Core
 {
@@ -10,11 +11,19 @@ namespace PCR.Core
         {
             OnLiquidUpdated?.Invoke(containerID, totalVol, mixColor);
         }
+
         // 步骤验证事件 (Manager监听此事件判断进度)
         public static event Action<bool, string> OnValidationResult;
         public static void PublishValidation(bool passed, string msg)
         {
             OnValidationResult?.Invoke(passed, msg);
+        }
+
+        // 被成功释放到对应位置的时候广播
+        public static event Action<EquipmentData> OnDragableDrop;
+        public static void PublishDragableDrop(EquipmentData currentObj)
+        {
+            OnDragableDrop?.Invoke(currentObj);
         }
     }
 }

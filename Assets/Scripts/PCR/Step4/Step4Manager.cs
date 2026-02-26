@@ -14,6 +14,11 @@ public class Step4Manager : StepBase
     [Header("UI")]
     public TextMeshProUGUI statusText;
 
+    private void Awake()
+    {
+        SetCurrentSceneActive(false);
+    }
+
     // 监听事件
     private void OnEnable()
     {
@@ -29,13 +34,16 @@ public class Step4Manager : StepBase
     {
         Debug.Log("Step 4 Started: PCR System Preparation");
         // _destinationTube.Clear();
+        SetCurrentSceneActive(true);
     }
 
+    [ContextMenu("Step 4 Complete")]
     public override void OnExit()
     {
+        Debug.Log("Step 4 Completed");
+        SetCurrentSceneActive(false);
         // 进入下一步
         PCRManager.Instance.NextStep();
-        Debug.Log("Step 4 Completed");
     }
 
 
